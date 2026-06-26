@@ -30,6 +30,10 @@ app.use((req, res) => {
     res.status(404).json({ message: "route not found" });
 });
 
-app.listen(5000, () => {
-    console.log("server runnig on ", process.env.PORT);
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log("server running on", PORT);
 });
+
+export default app;

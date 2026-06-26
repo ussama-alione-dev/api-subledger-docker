@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+    app:
+        build: .
+        ports:
+            - "8080:8080"
+        environment:
+            - MONGO_URI=${URI}
+            - SECRET_KEY_ACCESS_TOKEN=${SECRET_KEY_ACCESS_TOKEN}
+            - PORT=${PORT}
+        volumes:
+            - .:/app
+        command: npm run dev
+        depends_on:
+            - mongo
+
+    mongo:
+        image: mongo:latest
+        ports:
+            - "27017:27017"
+        volumes:
+            - mongo-data:/data/db
+
+volumes:
+    mongo-data:
